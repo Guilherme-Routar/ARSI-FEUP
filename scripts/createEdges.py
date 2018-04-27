@@ -22,6 +22,6 @@ def createEdges(pathToNodes, pathToEdges):
 
 
 createEdges(
-    '../data/users_by_followers_half.csv',
-    '../data/edges_followers_half.csv'
+    '../data/users_test.csv',
+    '../data/edges_test.csv'
 )
