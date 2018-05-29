@@ -11,10 +11,10 @@ def createEdges(pathToNodes, pathToEdges):
         auxList = usersList[iteration:len(usersList)]
 
         # Iterating sublist of users
-        for instance_aux in auxList:
+        for instance_aux in auxList: #stars,size,language
             user2 = instance_aux.split(',')
             if user[0] != user2[0] and user[1] == user2[1]:
-                edgesFile.write(user[0] + ',' + user2[0] + ',' + user[1])
+                edgesFile.write(user[0] + ',' + user2[0] + ',' + user[1] + ', ' + user[2] + ', ' + user[3] + ', ' + user[4])
 
         iteration += 1
 
@@ -22,6 +22,6 @@ def createEdges(pathToNodes, pathToEdges):
 
 
 createEdges(
-    '../data/users_test.csv',
-    '../data/edges_test.csv'
+    '../data/users.csv',
+    '../data/edges.csv'
 )
