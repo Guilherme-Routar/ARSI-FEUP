@@ -14,7 +14,7 @@ def createEdges(pathToNodes, pathToEdges):
         for instance_aux in auxList: #stars,size,language
             user2 = instance_aux.split(',')
             if user[0] != user2[0] and user[1] == user2[1]:
-                edgesFile.write(user[0] + ',' + user2[0] + ',' + user[1] + ', ' + user[2] + ', ' + user[3] + ', ' + user[4])
+                edgesFile.write(user[0] + ',' + user2[0] + ',' + user[1] + ',' + user[2] + ',' + user[3] + ',' + user[4] + ',' + user[5] + ',' + user[6])
 
         iteration += 1
 
