@@ -11,8 +11,8 @@ GITHUB_LOGIN = credentials[0]
 GITHUB_PASS = credentials[1]
 
 # Initializing users file
-usersFile = open('../data/users_proj.csv','w')
-usersFile.write('user,repository,stars,size,language') 
+usersFile = open('../data/users.csv','w')
+usersFile.write('user,repository,stars,forks,issues,size,language') 
 
 for page in range(1,40):
 
@@ -32,25 +32,42 @@ for page in range(1,40):
         ignore_repos = {'docs', 'ama', 'dotfiles', 'blog', 'amas'}
         
         # Writing each contribution per user to the file
-        for repos in range(0, len(data)):
-            # Ignoring useless common repositories
-            repos = data[repos]['name']
-            if repos in ignore_repos
-                break
+        for repos_id in range(0, len(data)):
+            
             # user name
             login = user['login']
+            string = login + ','
+
+            # Ignoring useless common repositories
+            repos = data[repos_id]['name']
+            if repos in ignore_repos:
+                break
+            string = string + repos + ','
+            
             # repository stars
-            stars = str(data[repos]['stargazers_count'])
+            stars = str(data[repos_id]['stargazers_count'])
+            string = string + stars + ','
+
+            # repository forks
+            forks = str(data[repos_id]['forks_count'])
+            string = string + forks + ','
+
+            # open issues
+            open_issues = str(data[repos_id]['open_issues_count'])
+            string = string + open_issues + ','
+
             # repository size
-            size = str(data[repos]['size'])
+            size = str(data[repos_id]['size'])
+            string = string + size + ','
+
             # repository (main) language
-            language = data[repos]['language']
+            language = data[repos_id]['language']
             if language is None:
                 language = 'null'
-            # open issues
-            open_issues = data[repos]['open_issues_count']
-            # Writing to file
-            usersFile.write('\n' + login + ',' + repos + ',' + stars + ',' + size + ',' + language)
+            string = string + language
 
+            # Writing to file
+            usersFile.write('\n' + string)
+ 
 # Closing file
 usersFile.close()
