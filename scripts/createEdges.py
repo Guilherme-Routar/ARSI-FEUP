@@ -17,8 +17,9 @@ def createEdges(pathToNodes, pathToEdges):
                 edgesFile.write(user[0] + ',' + user2[0] + ',' + user[1] + ',' + user[2] + ',' + user[3] + ',' + user[4] + ',' + user[5] + ',' + user[6])
 
         iteration += 1
-
-    edgesFile.close() # Finished writing 
+        
+    # Finished writing 
+    edgesFile.close() 
 
 
 createEdges(
