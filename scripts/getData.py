@@ -14,7 +14,10 @@ GITHUB_PASS = credentials[1]
 usersFile = open('../data/users.csv','w')
 usersFile.write('user,repository,stars,forks,issues,size,language') 
 
-for page in range(1,40):
+# Repositories to be ignored
+ignore_repos = {'docs', 'ama', 'dotfiles', 'blog', 'amas'}
+
+for page in range(1,50):
 
     # List of users
     print(mainPath + str(page))
@@ -27,9 +30,6 @@ for page in range(1,40):
         # Getting request json
         data_raw = requests.get(userPath + user['login']  + '/repos', auth=(GITHUB_LOGIN, GITHUB_PASS))
         data = data_raw.json()
-
-        # Repositories to be ignored
-        ignore_repos = {'docs', 'ama', 'dotfiles', 'blog', 'amas'}
         
         # Writing each contribution per user to the file
         for repos_id in range(0, len(data)):

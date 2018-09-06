@@ -8,6 +8,11 @@ with open('../data/edges.csv') as edges_file:
     edges_list = edges_file.readlines()[1:]
 
 nodes = []
+edges = []
+
+class MyClass(object):
+    def __init__(self, title):
+        self.title = title
 
 for edge in edges_list:
     edge_data = edge.split(',')
@@ -28,25 +33,24 @@ for edge in edges_list:
         nodes.append(source)
         # Creating node in graph
         v = g.add_vertex()
-        v_prop = g.new_vertex_property("string")
-        v_prop[v] = source
+
+        my_obj = MyClass(source)
+        v_prop = g.new_vertex_property('object')
+        v_prop[v] = my_obj
+        
     
     if target not in nodes:
         # Adding node to nodes list
         nodes.append(target)
         # Creating node in graph
         v = g.add_vertex()
-        v_prop = g.new_vertex_property("string")
-        v_prop[v] = target
 
-    
+        my_obj = MyClass(target)
+        v_prop = g.new_vertex_property('object')
+        v_prop[v] = my_obj
 
-print(nodes[0])
-'''
-v1 = g.add_vertex()
-v2 = g.add_vertex()
-e = g.add_edge(v1, v2)
-'''
+v_prop = g.new_vertex_property('object')
+for vertex in g.vertices():
+    print(v_prop[vertex].title)
 
-
-graph_draw(g)
+# graph_draw(g)
